@@ -1,0 +1,324 @@
+/* Základní nastavení těla stránky */
+body {
+  max-width: 600px;
+  margin: 0 5px;
+  padding: 0 5px;
+  background-color: #b4b4b4;
+  font-family: Arial, sans-serif;
+}
+
+/* Styl pro nadpis h2 */
+h2 {
+  color: rgba(0, 0, 0, 0.72);
+  text-align: LEFT;
+  margin-bottom: 20px;
+}
+
+/* Styl pro nadpis h3 */
+h3 {
+    color: #333;
+    text-decoration: underline;
+}
+
+/* Základní stylování tabulek */
+table {
+    max-width: 600px;
+    border-collapse: collapse;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+/* Kontejner pro zobrazení dat ze senzorů */
+.sensor-data-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;                /* mezery mezi nadpisem a tabulkou */
+  background-color: #f3f4f6;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  width: 600px;             /* stejná šířka jako ostatní kontejnery */
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+/* Přizpůsobení tabulky uvnitř kontejneru pro senzorová data */
+.sensor-data-container table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  box-shadow: none;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+/* Nastavení šířky sloupců v tabulce */
+table col:first-child {
+  width: 40%;
+}
+table col:last-child {
+  width: 60%;
+}
+
+/* Stylování buněk tabulky (hlavička i data) */
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    border-radius: 8px;
+}
+
+/* Stylování záhlaví tabulky */
+th {
+    background-color: rgb(0, 0, 0);
+    font-weight: bold;
+    color: #ffffff;
+
+}
+
+/* Zebra efekt pro řádky tabulky */
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Zvýraznění řádku při najetí myší */
+tr:hover {
+  background-color: #e9e9e9;
+}
+
+/* Stylování popisků (label) */
+label {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Styl pro indikátor stavu (kruh) */
+.status-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+
+/* Indikátor pro stav "on" (zapnuto) */
+.status-indicator.on {
+    background-color: green;
+}
+
+/* Indikátor pro stav "off" (vypnuto) */
+.status-indicator.off {
+    background-color: red;
+}
+
+/* Univerzální nastavení kontejnerů pro zařízení (vnitřní větrák, LED) */
+.infan-settings-container, .led-settings-container{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    background-color: #f3f4f6;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    width: 600px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+/* Sloupce uvnitř nastavení */
+.infan-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+    flex: 1;
+    min-width: 200px;
+}
+
+
+/* Stylování input polí pro čísla a čas */
+input[type="number"],
+input[type="time"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Styl při fokusu input polí */
+input[type="number"]:focus,
+input[type="time"]:focus {
+    outline: none;
+    border-color: #6c63ff;
+}
+
+
+/* Základní styl tlačítek - uložit*/
+.button {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Alternativní styl tlačítek - smazat */
+.button1 {
+    background-color: #aa0422;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Hover efekt pro tlačítka */
+.button:hover,
+.button1:hover {
+    background-color: black;
+    color: white;
+}
+
+/* Styl pro stavové zprávy, pokud je nastaveno */
+.schedule-set, .outfan-set, .infan-set {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+/* Styl pro stavové zprávy, pokud není nastaveno */
+.schedule-not-set, .outfan-not-set, .infan-not-set {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* Obecné nastavení stavových zpráv (plán, vnější větrák, vnitřní větrák) */
+#scheduleStatus, #outfanSettingsStatus, #infanIntervalStatus {
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+
+/* Styl pro vstupní pole TDS */
+#tds_min_value {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Styl pro TDS a pH stavovou zprávu */
+#tdsStatus, #phStatus {
+  padding: 8px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+
+/* Kontejner pro pH nastavení */
+.ph-settings-container {
+  width: 600px;
+}
+
+/* Řádkové uspořádání prvků v pH nastavení */
+.ph-row {
+  margin-bottom: 15px;
+}
+
+/* Stylování labelů v pH nastavení */
+.ph-row label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Vlastní styl pro slider pH s neviditelným jezdcem */
+input[type="range"].custom-ph {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: #ccc;
+  outline: none;
+}
+
+/* Nastavení jezdců slideru pro Webkit */
+input[type="range"].custom-ph::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #04AA6D;
+  cursor: pointer;
+  opacity: 0; /* Jezdec je skrytý */
+  transition: opacity 0.3s;
+}
+input[type="range"].custom-ph:focus::-webkit-slider-thumb,
+input[type="range"].custom-ph:active::-webkit-slider-thumb {
+  opacity: 1; /* Jezdec se objeví při interakci */
+}
+
+/* Nastavení jezdců slideru pro Firefox */
+input[type="range"].custom-ph::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #04AA6D;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+input[type="range"].custom-ph:focus::-moz-range-thumb,
+input[type="range"].custom-ph:active::-moz-range-thumb {
+  opacity: 1;
+}
+
+/* Nastavení jezdců slideru pro IE a Edge */
+input[type="range"].custom-ph::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #04AA6D;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+input[type="range"].custom-ph:focus::-ms-thumb,
+input[type="range"].custom-ph:active::-ms-thumb {
+  opacity: 1;
+}
+
+/* Wrapper pro slider a zobrazení jeho hodnoty */
+.slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Styl labelu, který zobrazuje hodnotu slideru */
+.slider-value {
+  font-size: 0.8em;
+  margin-left: 10px;
+  color: #333;
+}
+
+/* Zajištění viditelnosti slideru v kontextu .ph-set */
+.ph-set input[type="range"].custom-ph::-webkit-slider-thumb,
+.ph-set input[type="range"].custom-ph::-moz-range-thumb,
+.ph-set input[type="range"].custom-ph::-ms-thumb {
+  opacity: 1 !important;
+}

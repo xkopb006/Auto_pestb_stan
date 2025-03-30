@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grow Tent Dashboard</title>
+  <script src="../static/script/script.js"></script>
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+  <!-- Hlavní nadpis a tabulka se senzory -->
+  <h2>DATA ZE SENZORŮ</h2>
+  <div class="sensor-data-container">
+  <table>
+    <tr>
+      <th>Parameter</th>
+      <th>Hodnota</th>
+    </tr>
+    <tr><td>Teplota (DHT21)</td><td id="temperature">-</td></tr>
+    <tr><td>Vlhkost (DHT21)</td><td id="humidity">-</td></tr>
+    <tr><td>Teplota (BMP280)</td><td id="temperature-bmp">-</td></tr>
+    <tr><td>Tlak (BMP280) </td><td id="pressure">-</td></tr>
+    <tr><td>Teplota zálivky</td><td id="water_temperature">-</td></tr>
+    <tr><td>pH zálivky</td><td id="ph">-</td></tr>
+    <tr><td>TDS</td><td id="tds">-</td></tr>
+  </table>
+  </div>
+
+  <h2>OVLÁDÁNÍ</h2>
+  <!-- LED osvětlení -->
+  <h3>LED osvětlení</h3>
+  <div class="led-settings-container">
+    <div class="infan-column">
+      <label>
+        <input type="checkbox" id="led" onchange="toggleDevice('led')">
+        <span id="led_status">Neznámý</span>
+        <span id="led_indicator" class="status-indicator"></span>
+      </label>
+      <form id="scheduleForm">
+        <label for="start_time">Zapnout v:</label>
+        <input type="time" id="start_time" name="start_time" required>
+        <label for="end_time">Vypnout v:</label>
+        <input type="time" id="end_time" name="end_time" required>
+        <div id="scheduleStatus" class="schedule-not-set">Plán není nastaven</div>
+      </form>
+    </div>
+    <div class="infan-column">
+      <button type="submit" form="scheduleForm" class="button">Nastavit plán</button>
+      <button id="deleteScheduleBtn" class="button1">Smazat plán</button>
+    </div>
+  </div>
+
+  <!-- Hlavní čerpadlo -->
+  <h3>Hlavní čerpadlo</h3>
+  <div class="infan-settings-container">
+    <div class="infan-column">
+      <label>
+        <input type="checkbox" id="pump" onchange="toggleDevice('pump')">
+        <span id="pump_status">Neznámý</span>
+        <span id="pump_indicator" class="status-indicator"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Vnější větrák -->
+  <h3>Vnější větrák</h3>
+  <div class="infan-settings-container">
+    <div class="infan-column">
+      <label>
+        <input type="checkbox" id="outfan" onchange="toggleDevice('outfan')">
+        <span id="outfan_status">Neznámý</span>
+        <span id="outfan_indicator" class="status-indicator"></span>
+      </label>
+      <form id="outfanSettingsForm">
+        <label for="outfan_temperature">Teplota (°C):</label>
+        <input type="number" step="0.1" id="outfan_temperature" name="outfan_temperature" placeholder="Zvolte mezní hodnotu">
+        <label for="outfan_humidity">Vlhkost (%):</label>
+        <input type="number" step="0.1" id="outfan_humidity" name="outfan_humidity" placeholder="Zvolte mezní hodnotu">
+        <div id="outfanSettingsStatus" class="outfan-not-set">Nejsou nastaveny mezní hodnoty</div>
+      </form>
+    </div>
+    <div class="infan-column">
+      <button type="submit" form="outfanSettingsForm" class="button">Nastavit mezní hodnoty</button>
+      <button id="deleteLimitsBtn" class="button1">Smazat mezní hodnoty</button>
+    </div>
+  </div>
+
+  <!-- Vnitřní větrák -->
+  <h3>Vnitřní větrák</h3>
+  <div class="infan-settings-container">
+    <div class="infan-column">
+      <label>
+        <input type="checkbox" id="infan" onchange="toggleDevice('infan')">
+        <span id="infan_status">Neznámý</span>
+        <span id="infan_indicator" class="status-indicator"></span>
+      </label>
+      <input type="number" id="infan_interval_minutes" name="infan_interval_minutes" min="1" max="60" placeholder="Počet minut z hodiny">
+      <div id="infanIntervalStatus" class="infan-not-set">Interval vnitřního větráku není nastaven</div>
+    </div>
+    <div class="infan-column">
+      <button onclick="setupInfanInterval()" class="button">Nastavit interval</button>
+      <button onclick="deleteInfanInterval()" class="button1">Smazat interval</button>
+    </div>
+  </div>
+
+  <!-- pH regulace -->
+<h3>pH nastavení</h3>
+<div class="infan-settings-container ph-settings-container">
+  <div class="infan-column">
+    <div class="ph-row">
+      <label for="ph_max_value">pH Maximální hodnota:</label>
+      <div class="slider-wrapper">
+        <input type="range" class="custom-ph" id="ph_max_value" name="ph_max_value" min="0" max="14" step="0.5" required>
+        <span class="slider-value" id="ph_max_value_label">-</span>
+      </div>
+    </div>
+    <div class="ph-row">
+      <label for="ph_min_value">pH Minimální hodnota:</label>
+      <div class="slider-wrapper">
+        <input type="range" class="custom-ph" id="ph_min_value" name="ph_min_value" min="0" max="14" step="0.5" required>
+        <span class="slider-value" id="ph_min_value_label">-</span>
+      </div>
+    </div>
+      <div id="phStatus" class="infan-not-set">pH není nastaveno</div>
+  </div>
+  <div class="infan-column">
+    <button id="savePHSettings" class="button">Nastavit pH</button>
+    <button id="deletePHSettings" class="button1">Smazat pH nastavení</button>
+  </div>
+</div>
+
+  <!-- TDS regulace -->
+  <h3>TDS nastavení</h3>
+  <div class="infan-settings-container">
+      <div class="infan-column">
+          <label for="tds_min_value">Minimální hodnota TDS:</label>
+          <input type="number" step="0.1" id="tds_min_value" name="tds_min_value" placeholder="Zadejte minimální hodnotu">
+          <div id="tdsStatus" class="infan-not-set">Minimální TDS není nastaveno</div>
+      </div>
+      <div class="infan-column">
+          <button id="saveTDSSettings" class="button">Uložit minimální hodnotu</button>
+          <button id="deleteTDSSettings" class="button1">Smazat minimální hodnotu</button>
+      </div>
+  </div>
+
+</body>
+</html>
