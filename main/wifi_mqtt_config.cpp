@@ -1,11 +1,11 @@
 #include "wifi_mqtt_config.h"
 
 // připojení k wifi
-const char* ssid = "Koptik";
-const char* password = "vacice420";
+const char* ssid = "ssid";
+const char* password = "password";
 
 // připojení k mqtt brokeru
-const char* mqtt_server = "10.0.1.41";
+const char* mqtt_server = "0.0.0.0";
 const char* broker_user = "mqttuser";
 const char* broker_password = "12345";
 
