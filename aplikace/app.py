@@ -4,7 +4,7 @@ import paho.mqtt.client as mqtt
 app = Flask(__name__, static_url_path='/static', static_folder='static')
 
 # MQTT konfigurace
-MQTT_BROKER = "10.0.1.41"
+MQTT_BROKER = "0.0.0.0"
 MQTT_PORT = 1884
 MQTT_USER = "mqttuser"
 MQTT_PASSWORD = "12345"
